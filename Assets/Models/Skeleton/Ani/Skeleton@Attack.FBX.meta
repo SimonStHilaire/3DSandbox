@@ -261,7 +261,12 @@ ModelImporter:
   - first:
       137: 13700002
     second: Object02
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultsds
+    second: {fileID: 2100000, guid: b1494958bf9856a479bec1767c02878e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

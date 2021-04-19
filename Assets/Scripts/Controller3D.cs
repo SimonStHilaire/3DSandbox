@@ -55,26 +55,68 @@ public class Controller3D : MonoBehaviour
 
     public void GenerateMesh()
     {
-        //GameObject newObj = new GameObject("New quad mesh");
+        GameObject newObj = new GameObject("New quad mesh");
 
-        //Filter
-        //Renderer
-        //Material
+        MeshFilter meshFilter = newObj.AddComponent<MeshFilter>();
+        MeshRenderer meshRenderer = newObj.AddComponent<MeshRenderer>();
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Standard"));
 
-        //Vertices
-        //triangles indexes
-        //Normals
+        Vector3[] vertices = {
+            new Vector3(0, 0, 0),
+            new Vector3(QuadWidth, 0, 0),
+            new Vector3(0, QuadHeight, 0),
+            new Vector3(QuadWidth, QuadHeight, 0),
+        };
+
+        meshFilter.mesh.vertices = vertices;
+
+        int[] triangles = {
+            0, 2, 1,
+            2, 3, 1
+            };
+
+        meshFilter.mesh.triangles = triangles;
+
+        Vector3[] normals = {
+            -Vector3.forward,
+            -Vector3.forward,
+            -Vector3.forward,
+            -Vector3.forward,
+        };
+
+        meshFilter.mesh.normals = normals;
+
         //*uv
     }
 
     void ShowFrontOnly()
     {
-        //Use Dot product
+        foreach (VisibleObject vo in Objects)
+        {
+            Vector3 vec = vo.transform.position - Character.transform.position;
+            float dot = Vector3.Dot(vec, -Character.transform.forward);
+            
+            if (dot >= 0)
+                vo.Show();
+            else
+                vo.Hide();
+        }
     }
 
     void ShowInAngleOnly()
     {
-        //Use Dot product
+        foreach (VisibleObject vo in Objects)
+        {
+            Vector3 vec = vo.transform.position - Character.transform.position;
+            float dot = Vector3.Dot(vec.normalized, -Character.transform.forward);
+
+            float angle = Mathf.Rad2Deg * Mathf.Acos(dot);
+
+            if (angle < Angle)
+                vo.Show();
+            else
+                vo.Hide();
+        }
     }
 
     private void ShowAll()
