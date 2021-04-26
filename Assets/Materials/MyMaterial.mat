@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MyMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: ea65bb3bb5934c749b7319b649a7172b,
+  m_Shader: {fileID: -6465566751694194690, guid: 937514074a980344c97253d0cc200450,
     type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -22,6 +22,10 @@ Material:
     m_TexEnvs:
     - Texture2D_44EA6145:
         m_Texture: {fileID: 2800000, guid: a50cd85ee5b0e0f4c904d074e6e9703b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_A5EE11BE:
+        m_Texture: {fileID: 2800000, guid: 66708b752510f014f801918b6848c5e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_BB203927:
@@ -65,6 +69,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_25C40D9A: 0
+    - Vector1_C6F08185: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -82,5 +88,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_48655FF: {r: 1, g: 1, b: 1, a: 0}
+    - Color_CF5DABE: {r: 0, g: 0.82715464, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
