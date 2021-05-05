@@ -20,34 +20,39 @@ public class EvaluationManager : MonoBehaviour
     public Transform Rock;
     public float RockSpeed;
 
-    public void OnSliderChanged()
+    public void OnSliderChanged(float x)
     {
-        //TODO:
-        //ControlledMaterial
+        ControlledMaterial.SetFloat("_factor", x);
     }
 
     public void Update()
     {
         Earth.Rotate(new Vector3(0f, Time.deltaTime * EarthSpeed, 0f));
-        
+
         //TODO: Distance Moon-mars
-        float distance = 0f;
+        float distance = Vector3.Distance(Moon.position, Mars.position);
         MoonMarsDistanceText.text = distance.ToString();
 
         //TODO: Angle: Moon / Camera Forward
-        float angle = 0f;
+        Vector3 targetDir = Moon.position - Camera.main.transform.position;
+        float angle = Vector3.Angle(targetDir, Camera.main.transform.forward);
         MoonCamrFAngleText.text = angle.ToString();
 
         //TODO: Update Rock
         //Rock
+        Rock.position = Vector3.Lerp(Rock.position, Moon.position, RockSpeed);
 
     }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        Vector3 moonEarth = Earth.position - Moon.position;
+        Vector3 cross = Vector3.Cross(Vector3.up, moonEarth).normalized;
+
         //TODO: Afficher la normale créée par le vecteur up (0,1,0) et le vecteur entre "Moon" et "Earth"
-        //Gizmos.DrawLine(from, to, Color.red);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(cross, Vector3.up);
     }
 #endif //UNITY_EDITOR
 }
