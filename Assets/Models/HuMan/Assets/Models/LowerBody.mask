@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LowerBody
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/FootIK_L
+    m_Weight: 1
+  - m_Path: Armature/FootIK_L/Foot_R
+    m_Weight: 1
+  - m_Path: Armature/FootIK_L/Foot_R/Toes_R
+    m_Weight: 1
+  - m_Path: Armature/FootIK_R
+    m_Weight: 1
+  - m_Path: Armature/FootIK_R/Foot_R_001
+    m_Weight: 1
+  - m_Path: Armature/FootIK_R/Foot_R_001/Toes_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R
+    m_Weight: 0
+  - m_Path: Armature/Stomach_R/Thigh_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Thigh_R/Shin_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Thigh_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Thigh_R_001/Shin_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/IndexF1_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/IndexF1_R/IndexF2_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/IndexF1_R/IndexF2_R/IndexF3_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/LittleF1_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/LittleF1_R/LittleF2_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/LittleF1_R/LittleF2_R/LittleF3_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/MiddleF1_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/MiddleF1_R/MiddleF2_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/MiddleF1_R/MiddleF2_R/MIddleF3_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/RingF1_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/RingF1_R/RingF2_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/RingF1_R/RingF2_R/RingF3_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/ThumbRoot_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/ThumbRoot_R/Thumb1_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R/Elbow_R/Palm_R/ThumbRoot_R/Thumb1_R/Thumb2_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/IndexF1_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/IndexF1_R_001/IndexF2_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/IndexF1_R_001/IndexF2_R_001/IndexF3_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/LittleF1_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/LittleF1_R_001/LittleF2_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/LittleF1_R_001/LittleF2_R_001/LittleF3_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/MiddleF1_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/MiddleF1_R_001/MiddleF2_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/MiddleF1_R_001/MiddleF2_R_001/MIddleF3_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/RingF1_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/RingF1_R_001/RingF2_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/RingF1_R_001/RingF2_R_001/RingF3_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/ThumbRoot_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/ThumbRoot_R_001/Thumb1_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/ForeArm_R_001/Elbow_R_001/Palm_R_001/ThumbRoot_R_001/Thumb1_R_001/Thumb2_R_001
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/Neck_R
+    m_Weight: 1
+  - m_Path: Armature/Stomach_R/Torso_R/Neck_R/Head_R
+    m_Weight: 1
+  - m_Path: Cylinder_000_Cylinder_001
+    m_Weight: 1

@@ -92,7 +92,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _factor: 0.5
+    - _factor: 1
     m_Colors:
     - Color_200E223D: {r: 1, g: 0, b: 0, a: 0}
     - Color_48655FF: {r: 1, g: 1, b: 1, a: 0}
