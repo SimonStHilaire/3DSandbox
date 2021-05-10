@@ -53,6 +53,9 @@ public class EvaluationManager : MonoBehaviour
         //TODO: Afficher la normale créée par le vecteur up (0,1,0) et le vecteur entre "Moon" et "Earth"
         Gizmos.color = Color.red;
         Gizmos.DrawLine(cross, Vector3.up);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(Earth.position, Earth.position + cross);
     }
 #endif //UNITY_EDITOR
 }
