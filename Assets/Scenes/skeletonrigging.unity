@@ -511,12 +511,6 @@ MonoBehaviour:
   - {fileID: 247258355}
   - {fileID: 708674510}
   - {fileID: 1792795143}
---- !u!95 &321005332 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 5a35c5f0a89b9654d897ccd7c8f81bd0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1795697680}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &365305733
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardSpeed: 1
   TurnSpeed: 180
-  Anim: {fileID: 321005332}
+  AnimController: {fileID: 0}
 --- !u!143 &731538072
 CharacterController:
   m_ObjectHideFlags: 0
