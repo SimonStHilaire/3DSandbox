@@ -9,6 +9,7 @@ public class SkeletonController : MonoBehaviour
     public Animator AnimController;
     public Collider SwordCollider;
     public CharacterController Controller;
+    public bool CanAttack;
 
     private bool CanMove = true;
 
@@ -36,7 +37,7 @@ public class SkeletonController : MonoBehaviour
             Controller.transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal") * TurnSpeed * Time.deltaTime, 0f));
 
         //Attack
-        if (CanMove && Input.GetButton("Fire1"))
+        if (CanAttack && CanMove && Input.GetButton("Fire1"))
         {
             AnimController.SetTrigger("Attack");
         }
