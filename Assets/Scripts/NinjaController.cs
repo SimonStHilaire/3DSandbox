@@ -31,10 +31,11 @@ public class NinjaController : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire2"))
         {
+            Speed = 0;
             AnimatorController.SetTrigger("Kick");
         }
 
-        if (Controller != null)
+        else if (Controller != null)
         {
             if (Input.GetAxis("Vertical") > 0f)
             {
