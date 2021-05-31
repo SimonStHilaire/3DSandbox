@@ -6,6 +6,8 @@ public class TankController : MonoBehaviour
 {
     public WheelCollider FrontLeft, FrontRight, RearLeft, RearRight;
     public Transform FrontLeftTransform, FrontRightTransform, RearLeftTransform, RearRightTransform;
+    public LayerMask GroundLayerMask;
+    public Transform TurrentTransform;
 
     public float Acceleration;
     public float Deceleration;
@@ -27,11 +29,6 @@ public class TankController : MonoBehaviour
 
         if (!Mathf.Approximately(forwardInput, 0f))
         {
-            FrontLeft.brakeTorque = 0f;
-            FrontRight.brakeTorque = 0f;
-            RearLeft.brakeTorque = 0f;
-            RearRight.brakeTorque = 0f;
-
             FrontRight.motorTorque = Acceleration * forwardInput;
             RearRight.motorTorque = Acceleration * forwardInput;
             RearLeft.motorTorque = Acceleration * forwardInput;
@@ -70,6 +67,8 @@ public class TankController : MonoBehaviour
         SetTransform(FrontRight, FrontRightTransform);
         SetTransform(RearLeft, RearLeftTransform);
         SetTransform(RearRight, RearRightTransform);
+
+        UpdateTurret();
     }
 
     void Update4WheelDriveAndSteering()
@@ -118,5 +117,19 @@ public class TankController : MonoBehaviour
         collider.GetWorldPose(out pos, out rot);
         transform.position = pos;
         transform.rotation = rot;
+    }
+
+    void UpdateTurret()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit raycastHit = new RaycastHit();
+
+        if(Physics.Raycast(ray, out raycastHit, float.MaxValue, GroundLayerMask))
+        {
+            Vector3 lookAt = raycastHit.point;
+            lookAt.y = TurrentTransform.position.y;
+            TurrentTransform.LookAt(lookAt);
+        }
     }
 }
