@@ -9,6 +9,8 @@ public class TankController : MonoBehaviour
     public LayerMask GroundLayerMask;
     public Transform TurrentTransform;
 
+    public Shooter shooter;
+
     public float Acceleration;
     public float Deceleration;
 
@@ -68,7 +70,15 @@ public class TankController : MonoBehaviour
         SetTransform(RearLeft, RearLeftTransform);
         SetTransform(RearRight, RearRightTransform);
 
-        UpdateTurret();
+        Vector3 targetPos = new Vector3();
+
+        if (UpdateTurret(out targetPos))
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                shooter.Shoot(targetPos);
+            }
+        }
     }
 
     void Update4WheelDriveAndSteering()
@@ -119,7 +129,7 @@ public class TankController : MonoBehaviour
         transform.rotation = rot;
     }
 
-    void UpdateTurret()
+    bool UpdateTurret(out Vector3 targetPos)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -127,9 +137,19 @@ public class TankController : MonoBehaviour
 
         if(Physics.Raycast(ray, out raycastHit, float.MaxValue, GroundLayerMask))
         {
-            Vector3 lookAt = raycastHit.point;
-            lookAt.y = TurrentTransform.position.y;
-            TurrentTransform.LookAt(lookAt);
+            targetPos = raycastHit.point;
+            TurrentTransform.LookAt(targetPos);
+
+            Vector3 angles = TurrentTransform.localRotation.eulerAngles;
+            angles.x = 0f;
+            angles.z = 0f;
+            TurrentTransform.localRotation = Quaternion.Euler(angles);
+
+            return true;
         }
+
+        targetPos = Vector3.zero;
+
+        return false;
     }
 }

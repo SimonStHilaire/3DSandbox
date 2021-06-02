@@ -18,25 +18,20 @@ public class Shooter : MonoBehaviour
 
     public float ShootSpeed;
 
-    public void Shoot()
+    public void Shoot(Vector3? pos = null)
     {
-        bool up = true;
+        Vector3 shootPosition = pos.HasValue ? pos.Value : Target.position;
 
-        switch(shootType)
-        {
-            case ShootType.ForceDown:
-                up = false;
-                break;
-            case ShootType.Random:
-                up = Random.Range(0f, 1f) < 0.5f ? true : false;
-                break;
-        }
+        Vector3 vec = shootPosition - transform.position;
+        Ray ray = new Ray(transform.position, vec);
+
+        bool up = Physics.Raycast(ray, vec.magnitude - 0.01f);
         
-        float? angle = ComputeAngle(up);
+        float? angle = ComputeAngle(shootPosition, up);
 
         if (angle != null)
         {
-            transform.LookAt(Target);
+            transform.LookAt(shootPosition);
 
             transform.localEulerAngles = new Vector3(360f - (float)angle, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
@@ -54,9 +49,9 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    float? ComputeAngle(bool up = true)
+    float? ComputeAngle(Vector3 pos, bool up = true)
     {
-        Vector3 dir = Target.position - transform.position;
+        Vector3 dir = pos - transform.position;
 
         float y = dir.y;
 
