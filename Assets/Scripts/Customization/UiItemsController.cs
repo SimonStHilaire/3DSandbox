@@ -8,18 +8,14 @@ public class UiItemsController : MonoBehaviour
 
     public GameObject itemRef;
 
-    // Start is called before the first frame update
-    void Start()
+    public void displayItems(List<UiItemDTO> items)
     {
-        clearList();
-    }
-
-    void displayItems(List<UiItem> items)
-    {
-        foreach (UiItem item in items)
+        foreach (UiItemDTO item in items)
         {
+            clearList();
             GameObject i = Instantiate(itemRef);
-            i.GetComponentInChildren<Text>().text = item.displayName;
+            i.GetComponent<UiItem>().setDisplayText(item.displayName);
+            i.transform.SetParent(transform, false);
         }
 
     }
@@ -31,4 +27,5 @@ public class UiItemsController : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+
 }

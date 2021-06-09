@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class VehiculeManager : MonoBehaviour
 {
+    public string car_name;
+
     public List<AttachmentPoint> AttachmentPoints;
+
 
     void Start()
     {
