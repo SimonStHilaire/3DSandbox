@@ -6,8 +6,13 @@ public class VehiculeManager : MonoBehaviour
 {
     public string car_name;
 
-    public List<AttachmentPoint> AttachmentPoints;
-
+    public AttachmentPoint RoofAttachmentPoint;
+    public AttachmentPoint BulbarAttachmentPoint;
+    public AttachmentPoint HeadlightAttachmentPoint;
+    public AttachmentPoint TireFrontRightAttachmentPoint;
+    public AttachmentPoint TireFrontLeftAttachmentPoint;
+    public AttachmentPoint TireBackRightAttachmentPoint;
+    public AttachmentPoint TireBackLeftAttachmentPoint;
 
     void Start()
     {
