@@ -8,7 +8,10 @@ using UnityEngine.Networking;
 
 public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 {
-    public string RemotePath;
+    public delegate void DownloadComplete();
+    public DownloadComplete OnDownloadComplete;
+    [SerializeField]
+    private string RemotePath;
 
     [Serializable]
     public class Bundle
@@ -24,6 +27,7 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
     }
 
     BundleManifest Manifest = null;
+    int DownloadCount = 0;
 
     const string MANIFEST_FILENAME = "manifest.json";
 
@@ -31,6 +35,14 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 
     public string[] GetAttachmentNames()
     {
+        if (Manifest == null)
+        {
+            Manifest = JsonUtility.FromJson<BundleManifest>(File.ReadAllText(GetManifestFilePath()));
+
+            if (Manifest == null)
+                return new string[0];
+        }
+
         string[] attachments = new string[Manifest.bundles.Count];
 
         if (Manifest != null)
@@ -49,12 +61,36 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
         return File.Exists(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower());
     }
 
+    public List<AttachmentPart> GetAllParts()
+    {
+        List<AttachmentPart> parts = new List<AttachmentPart>();
+
+        string[] attachmentNames = GetAttachmentNames();
+
+        foreach (string name in attachmentNames)
+        {
+            parts.Add(LoadAttachment(name));
+        }
+
+        return parts;
+    }
+
     public AttachmentPart LoadAttachment(string name)
     {
         AssetBundle bundle = AssetBundle.LoadFromFile(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower());
         LoadedBundles[name] = bundle;
 
-        return Instantiate(bundle.LoadAsset<AttachmentPart>(name));
+        string[]assets = bundle.GetAllAssetNames();
+
+        GameObject obj = null;
+
+        if (assets.Length > 0)
+            obj = Instantiate(bundle.LoadAsset<GameObject>(assets[0]));
+
+        if (obj)
+            return obj.GetComponent<AttachmentPart>();
+
+        return null;
     }
 
     public void Initialize()
@@ -71,6 +107,8 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
     {
         string filePath = GetManifestFilePath();
 
+        List<string> downloads = new List<string>();
+
         if (File.Exists(filePath))
         {
             BundleManifest manifest = JsonUtility.FromJson<BundleManifest>(File.ReadAllText(filePath));
@@ -81,11 +119,32 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 
                 if(localBundle == null || bundle.version > localBundle.version)
                 {
-                    StartCoroutine(DownloadFile(bundle.name));
+                    downloads.Add(bundle.name);
                 }
             }
         }
+
+        if (downloads.Count > 0)
+        {
+            DownloadCount = downloads.Count;
+
+            foreach (string name in downloads)
+                StartCoroutine(DownloadFile(name, OnFileDownloadComplete));
+        }
+        else
+        {
+            OnDownloadComplete();
+        }
     }
+
+    void OnFileDownloadComplete()
+    {
+        --DownloadCount;
+
+        if (DownloadCount <= 0)
+            OnDownloadComplete();
+    }
+
     string GetManifestFilePath()
     {
         return Application.persistentDataPath + Path.AltDirectorySeparatorChar + MANIFEST_FILENAME;

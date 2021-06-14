@@ -8,10 +8,21 @@ public class GenerateAssetBundles
 {
     static string ATTACHMENT_ROOT_PATH = "Assets/Prefab/customization/attachments/roof/";
     static string BUNDLES_PATH = "AssetBundles/";
-    
+
 
     [MenuItem("Assets/Generate Asset bundles - Windows")]
     static public void GenerateWindows()
+    {
+        GenerateBundles(BuildTarget.StandaloneWindows64, "win");
+    }
+
+    [MenuItem("Assets/Generate Asset bundles - OSX")]
+    static public void GenerateOSX()
+    {
+        GenerateBundles(BuildTarget.StandaloneOSX, "mac");
+    }
+
+    static void GenerateBundles(BuildTarget buildTarget, string prefix)
     {
         List<string> bundleNames = new List<string>();
 
@@ -24,7 +35,7 @@ public class GenerateAssetBundles
             foreach (string filePath in _files)
             {
                 if(Path.GetExtension(filePath) != ".meta")
-                    bundleNames.Add(GenerateBundleWin(BuildTarget.StandaloneWindows64, "win", filePath));
+                    bundleNames.Add(GenerateBundleWin(buildTarget, prefix, filePath));
             }
         }
 
@@ -33,7 +44,7 @@ public class GenerateAssetBundles
         foreach (string filePath in files)
         {
             if (Path.GetExtension(filePath) != ".meta")
-                bundleNames.Add(GenerateBundleWin(BuildTarget.StandaloneWindows64, "win", filePath));
+                bundleNames.Add(GenerateBundleWin(buildTarget, prefix, filePath));
         }
 
         AssetBundleManager.BundleManifest manifest = new AssetBundleManager.BundleManifest();
