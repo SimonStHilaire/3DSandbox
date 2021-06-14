@@ -95,6 +95,14 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 
     public void Initialize()
     {
+        if (string.IsNullOrEmpty(RemotePath))
+        {
+            CustomizationParameters parameters = Resources.Load<CustomizationParameters>("CustomizationParameters");
+
+            if (parameters != null)
+                RemotePath = parameters.AssetBundlesRemotePath;
+        }
+
         if (File.Exists(GetManifestFilePath()))
         {
             Manifest = JsonUtility.FromJson<BundleManifest>(File.ReadAllText(GetManifestFilePath()));
@@ -141,7 +149,7 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
     {
         --DownloadCount;
 
-        if (DownloadCount <= 0)
+        if (DownloadCount <= 0 && OnDownloadComplete != null)
             OnDownloadComplete();
     }
 
