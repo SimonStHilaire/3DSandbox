@@ -105,10 +105,11 @@ MonoBehaviour:
   RoofAttachmentPoint: {fileID: 5097308629903157012}
   BulbarAttachmentPoint: {fileID: 8003605680864445968}
   HeadlightAttachmentPoint: {fileID: 2644631822685452363}
-  TireFrontRightAttachmentPoint: {fileID: 6398443084636847132}
-  TireFrontLeftAttachmentPoint: {fileID: 454035328964676980}
-  TireBackRightAttachmentPoint: {fileID: 3538994187130490260}
-  TireBackLeftAttachmentPoint: {fileID: 3696647461733701612}
+  TireAttachmentPoints:
+  - {fileID: 6398443084636847132}
+  - {fileID: 454035328964676980}
+  - {fileID: 3538994187130490260}
+  - {fileID: 3696647461733701612}
 --- !u!1 &136939900196344197
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b0c17aae7da7041a806e0273991a58, type: 3}
   m_Name: CustomizationParameters
   m_EditorClassIdentifier: 
-  AssetBundlesRemotePath: /Users/phillippecanuel/Documents/GitHub/3DSandbox/AssetBundles/
+  AssetBundlesRemotePath: http://sceau.s3.ca-central-1.amazonaws.com/
