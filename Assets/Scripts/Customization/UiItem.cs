@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class UiItem : MonoBehaviour
 {
 
-    private int id { get; set; }
+    public Guid id { get; set; }
 
     private Text text;
 
@@ -25,7 +26,7 @@ public class UiItem : MonoBehaviour
         button.onClick.AddListener(() => click(this.id));
     }
 
-    void click(int id)
+    void click(Guid id)
     {
         custoCarManager.Instance.btnClick(id);
     }

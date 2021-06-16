@@ -1,6 +1,8 @@
-﻿public class UiItemDTO
+﻿using System;
+
+public class UiItemDTO
 {
     public string displayName { get; set; }
 
-    public int id;
+    public Guid id;
 }

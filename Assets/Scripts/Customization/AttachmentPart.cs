@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttachmentPart : MonoBehaviour
 {
+    public Guid id;
+
     public AttachmentType type;
 
     [SerializeField]

@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 3388065098
+CRC: 3154758007
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: roof_attachments_v3.prefab_win
+      Name: roof_attachments_v3.prefab_mac
       Dependencies: {}

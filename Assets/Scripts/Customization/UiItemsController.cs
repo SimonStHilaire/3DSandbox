@@ -10,11 +10,12 @@ public class UiItemsController : MonoBehaviour
 
     public void displayItems(List<UiItemDTO> items)
     {
+        clearList();
         foreach (UiItemDTO item in items)
         {
-            clearList();
             GameObject i = Instantiate(itemRef);
             i.GetComponent<UiItem>().setDisplayText(item.displayName);
+            i.GetComponent<UiItem>().id = item.id;
             i.transform.SetParent(transform, false);
         }
 

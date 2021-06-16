@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class VehiculeManager : MonoBehaviour
 {
+
+    public Guid Id { get; set; }
+
     public string car_name;
 
     public AttachmentPoint RoofAttachmentPoint;
