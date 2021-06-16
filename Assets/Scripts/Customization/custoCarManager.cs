@@ -23,6 +23,7 @@ public class custoCarManager : SceneSingleton<custoCarManager>
     {
         AssetBundleManager.Instance.OnDownloadComplete += OnDownloadComplete;
         AssetBundleManager.Instance.Initialize();
+
         CustomizeBtn = new UiItemDTO { displayName = "Customize", id = Guid.NewGuid() };
         BackBtn = new UiItemDTO { displayName = "Back", id = Guid.NewGuid() };
         displayCarList();
@@ -30,7 +31,9 @@ public class custoCarManager : SceneSingleton<custoCarManager>
 
     void OnDownloadComplete()
     {
-        Debug.Log("OnDownloadComplete"); 
+        Debug.Log("OnDownloadComplete");
+        parts = AssetBundleManager.Instance.GetAllParts();
+        parts.ForEach(part => part.gameObject.SetActive(false));
     }
 
     public void btnClick(Guid id)
@@ -99,12 +102,17 @@ public class custoCarManager : SceneSingleton<custoCarManager>
 
         uiItemsController.displayItems(uiParts);
 
-        //cars.First(car => car.isActiveAndEnabled);
     }
 
     private void specificPartConstomize(Guid id)
     {
-        //parts.
+        UiItemDTO selectedUiPart = uiParts.First(ui => ui.id == id);
+
+        AttachmentPart selectedPart = parts.First(part => part.Title == selectedUiPart.displayName);
+
+        VehiculeManager activeCar = cars.First(car => car.isActiveAndEnabled);
+
+        activeCar.SetAttachment(selectedPart);
     }
 
     private void backBtnClick()
