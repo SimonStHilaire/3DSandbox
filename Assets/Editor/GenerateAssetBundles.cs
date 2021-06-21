@@ -34,7 +34,7 @@ public class GenerateAssetBundles
 
             foreach (string filePath in _files)
             {
-                if(Path.GetExtension(filePath) != ".meta")
+                if(Path.GetExtension(filePath) == ".prefab")
                     bundleNames.Add(GenerateBundleWin(buildTarget, prefix, filePath));
             }
         }
@@ -43,7 +43,7 @@ public class GenerateAssetBundles
 
         foreach (string filePath in files)
         {
-            if (Path.GetExtension(filePath) != ".meta")
+            if (Path.GetExtension(filePath) == ".prefab")
                 bundleNames.Add(GenerateBundleWin(buildTarget, prefix, filePath));
         }
 
@@ -66,10 +66,18 @@ public class GenerateAssetBundles
 
     static string GenerateBundleWin(BuildTarget target, string suffix, string filePath)
     {
+        //Generate thumbnail
+        GameObject obj = AssetDatabase.LoadAssetAtPath<GameObject>(filePath);
+
+        if (obj == null)
+            return string.Empty;
+
+        GenerateAttachmentPartsThumbnails.GenerateAssetsThumbnail(obj);
+
         string[] assets = new string[2];
 
         assets[0] = filePath;
-        //assets[1] = file + ".png";
+        assets[1] = filePath + ".png";
 
         AssetBundleBuild[] buildMap = new AssetBundleBuild[1];
 

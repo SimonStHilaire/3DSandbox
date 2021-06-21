@@ -13,6 +13,21 @@ public class AttachmentPart : MonoBehaviour
     private string title;
     [SerializeField]
     private string description;
+    [SerializeField]
+    private Sprite thumbnail;
+
+    public Sprite Thumbnail
+    {
+        get
+        {
+            return thumbnail;
+        }
+
+        set
+        {
+            thumbnail = value;
+        }
+    }
 
     public string Title
     {

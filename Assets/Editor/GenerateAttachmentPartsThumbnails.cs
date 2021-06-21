@@ -6,31 +6,48 @@ using System.IO;
 
 public class GenerateAttachmentPartsThumbnails
 {
-    [MenuItem("Assets/Generate thumbnail")]
+    [MenuItem("Assets/Generate selected thumbnail")]
     static void GenerateAssetsThumbnails()
+    {
+        GameObject selectedObject = Selection.activeGameObject;
+
+        GenerateAssetsThumbnail(selectedObject);
+    }
+
+    static public void GenerateAssetsThumbnail(GameObject go)
+    {
+        string thumbnailFilename = GenerateObjectAssetsThumbnail(go);
+
+        if (!string.IsNullOrEmpty(thumbnailFilename))
+        {
+            SetThumbnailAs2DSprite(thumbnailFilename);
+        }
+    }
+
+    static string GenerateObjectAssetsThumbnail(GameObject obj)
     {
         AssetDatabase.StartAssetEditing();
 
-        GameObject selectedObject = Selection.activeGameObject;
+        string thumbnailPath = AssetDatabase.GetAssetPath(obj.GetInstanceID());
 
-        string thumbnailPath = AssetDatabase.GetAssetPath(selectedObject.GetInstanceID());
+        if (obj == null)
+            return string.Empty;
 
-        if (selectedObject == null)
-            return;
-
-        Texture2D thumbnail = RuntimePreviewGenerator.GenerateModelPreview(selectedObject.transform);
+        Texture2D thumbnail = RuntimePreviewGenerator.GenerateModelPreview(obj.transform);
 
         byte[] _bytes = thumbnail.EncodeToPNG();
 
-        string fullPath = thumbnailPath + selectedObject.name + ".png";
+        string fullPath = thumbnailPath + ".png";
 
         System.IO.File.WriteAllBytes(fullPath, _bytes);
 
         AssetDatabase.ImportAsset(fullPath);
 
+        SetThumbnailAs2DSprite(fullPath);
+
         AssetDatabase.StopAssetEditing();
 
-        SetThumbnailAs2DSprite(fullPath);
+        return fullPath;
     }
 
     static public void SetThumbnailAs2DSprite(string path)

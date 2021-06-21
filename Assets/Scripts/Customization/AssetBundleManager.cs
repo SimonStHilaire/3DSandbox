@@ -86,10 +86,19 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
         GameObject obj = null;
 
         if (assets.Length > 0)
+        {
             obj = Instantiate(bundle.LoadAsset<GameObject>(assets[0]));
+        }
+
 
         if (obj)
+        {
+            if (assets.Length > 1)
+                obj.GetComponent<AttachmentPart>().Thumbnail = Instantiate(bundle.LoadAsset<Sprite>(assets[1]));
+
             return obj.GetComponent<AttachmentPart>();
+        }
+            
 
         return null;
     }
