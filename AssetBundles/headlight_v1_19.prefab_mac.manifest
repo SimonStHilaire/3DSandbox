@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2644454600
+CRC: 2301860151
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2e2fdd0cabd85963bfa6d4e5c0cc955c
+    Hash: cddf8f60ca09f76fec810747448e9249
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9563a198191bbff02ec9da2fa937881c
@@ -31,5 +31,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefab/customization/attachments/roof/Roof_attachments_v1.prefab
+- Assets/Prefab/customization/attachments/headlight/Headlight_v1_19.prefab
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3567146063
+CRC: 2525372968
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cfe10ad89d49b0c3b3bed0a7850432cb
+    Hash: d9eb4a5a96cdd0240c6325f82c927601
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9563a198191bbff02ec9da2fa937881c
@@ -31,5 +31,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefab/customization/attachments/roof/Roof_attachments_v2.prefab
+- Assets/Prefab/customization/attachments/tire/Tire_v5.prefab
 Dependencies: []
