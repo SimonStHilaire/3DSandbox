@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33617638310145232}
   - component: {fileID: 23523988579994034}
   - component: {fileID: 878631580963727586}
+  - component: {fileID: 4546171614743042428}
   m_Layer: 0
   m_Name: Buggy_v1
   m_TagString: Untagged
@@ -110,6 +111,20 @@ MonoBehaviour:
   - {fileID: 454035328964676980}
   - {fileID: 3538994187130490260}
   - {fileID: 3696647461733701612}
+  RotationSpeed: 5
+--- !u!65 &4546171614743042428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853152799124830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.807909, y: 1.7313814, z: 4.4756374}
+  m_Center: {x: -0.000000059604645, y: 0, z: 0}
 --- !u!1 &136939900196344197
 GameObject:
   m_ObjectHideFlags: 0
