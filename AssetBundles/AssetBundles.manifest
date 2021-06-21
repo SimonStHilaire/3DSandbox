@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 905305872
+CRC: 1222393432
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: tire_v6.prefab_mac
+      Name: tire_v6.prefab_win
       Dependencies: {}
