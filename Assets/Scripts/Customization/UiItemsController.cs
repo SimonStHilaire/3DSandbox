@@ -14,8 +14,13 @@ public class UiItemsController : MonoBehaviour
         foreach (UiItemDTO item in items)
         {
             GameObject i = Instantiate(itemRef);
-            i.GetComponent<UiItem>().setDisplayText(item.displayName);
-            i.GetComponent<UiItem>().id = item.id;
+            UiItem iUI = i.GetComponent<UiItem>();
+            iUI.setDisplayText(item.displayName);
+            iUI.id = item.id;
+            if (item.thumbnail != null)
+            {
+                iUI.setThumbnail(item.thumbnail);
+            }
             i.transform.SetParent(transform, false);
         }
         float spacing = GetComponent<HorizontalLayoutGroup>().spacing;

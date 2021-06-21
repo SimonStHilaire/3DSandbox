@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UiItem : MonoBehaviour
@@ -18,6 +15,12 @@ public class UiItem : MonoBehaviour
     public void setDisplayText(string text)
     {
         GetComponentInChildren<Text>().text = text;
+    }
+
+    public void setThumbnail(Sprite sprite)
+    {
+        GetComponent<Image>().color = Color.white;
+        GetComponent<Image>().sprite = sprite;
     }
 
     private void Start()

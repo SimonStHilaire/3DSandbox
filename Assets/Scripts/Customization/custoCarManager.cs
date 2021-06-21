@@ -95,7 +95,7 @@ public class custoCarManager : SceneSingleton<custoCarManager>
 
         foreach (AttachmentPart attachmentPart in attachmentPartsWithType)
         {
-            uiParts.Add(new UiItemDTO { displayName = attachmentPart.Title, id = Guid.NewGuid() });
+            uiParts.Add(new UiItemDTO { displayName = attachmentPart.Title, id = Guid.NewGuid(), thumbnail = attachmentPart.Thumbnail });
         }
 
         uiParts.Add(BackBtn);
