@@ -18,6 +18,11 @@ public class UiItemsController : MonoBehaviour
             i.GetComponent<UiItem>().id = item.id;
             i.transform.SetParent(transform, false);
         }
+        float spacing = GetComponent<HorizontalLayoutGroup>().spacing;
+
+        float finalSize = (items.Count * (itemRef.GetComponent<RectTransform>().sizeDelta.x + spacing)) + spacing;
+
+        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, finalSize);
 
     }
 
