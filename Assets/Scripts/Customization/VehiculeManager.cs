@@ -20,6 +20,14 @@ public class VehiculeManager : MonoBehaviour
     GameObject HeadlightPart = null;
     GameObject[] TireParts = null;
 
+    public float RotationSpeed = 10;
+
+
+    private void OnMouseDrag()
+    {
+        transform.Rotate(0, (Input.GetAxis("Mouse X") * RotationSpeed * -1), 0, Space.World);
+    }
+
     public void SetAttachment(AttachmentPart part)
     {
         switch(part.type)
