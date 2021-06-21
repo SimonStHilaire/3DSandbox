@@ -69,7 +69,8 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 
         foreach (string name in attachmentNames)
         {
-            parts.Add(LoadAttachment(name));
+            if (File.Exists(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower()))
+                parts.Add(LoadAttachment(name));
         }
 
         return parts;
@@ -166,7 +167,9 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
 
         yield return request.SendWebRequest();
 
-        while (!request.downloadHandler.isDone)
+        while (!request.downloadHandler.isDone &&
+           (request.result == UnityWebRequest.Result.InProgress && request.result != UnityWebRequest.Result.ConnectionError && request.result != UnityWebRequest.Result.DataProcessingError))
+
         {
             Debug.Log(request.downloadProgress.ToString());
             yield return new WaitForFixedUpdate();
