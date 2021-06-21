@@ -6,7 +6,7 @@ using System.IO;
 
 public class GenerateAssetBundles
 {
-    static string ATTACHMENT_ROOT_PATH = "Assets/Prefab/customization/attachments/roof/";
+    static string ATTACHMENT_ROOT_PATH = "Assets/Prefab/customization/attachments/";
     static string BUNDLES_PATH = "AssetBundles/";
 
 
