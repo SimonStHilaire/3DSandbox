@@ -10,6 +10,8 @@ public class VehiculeManager : MonoBehaviour
 
     public string car_name;
 
+    public Sprite Thumbnail;
+
     public AttachmentPoint RoofAttachmentPoint;
     public AttachmentPoint BulbarAttachmentPoint;
     public AttachmentPoint HeadlightAttachmentPoint;

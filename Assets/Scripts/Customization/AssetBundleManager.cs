@@ -29,9 +29,27 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
     BundleManifest Manifest = null;
     int DownloadCount = 0;
 
-    const string MANIFEST_FILENAME = "manifest.json";
+    const string ATTACHMENTS_MANIFEST_FILENAME = "manifest.json";
+    const string CARS_MANIFEST_FILENAME = "carsmanifest.json";
 
     Dictionary<string, AssetBundle> LoadedBundles = new Dictionary<string, AssetBundle>();
+
+    public string[] GetCarNames()
+    {
+        BundleManifest carsManifest = JsonUtility.FromJson<BundleManifest>(File.ReadAllText(GetCarsManifestFilePath()));
+
+        if (carsManifest == null)
+            return new string[0];
+
+        string[] cars = new string[carsManifest.bundles.Count];
+
+        for (int i = 0; i < carsManifest.bundles.Count; ++i)
+        {
+            cars[i] = carsManifest.bundles[i].name;
+        }
+
+        return cars;
+    }
 
     public string[] GetAttachmentNames()
     {
@@ -59,6 +77,21 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
     public bool BundleExists(string name)
     {
         return File.Exists(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower());
+    }
+
+    public List<VehiculeManager> GetAllVehicules()
+    {
+        List<VehiculeManager> cars = new List<VehiculeManager>();
+
+        string[] carNames = GetCarNames();
+
+        foreach (string name in carNames)
+        {
+            if (File.Exists(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower()))
+                cars.Add(LoadCar(name));
+        }
+
+        return cars;
     }
 
     public List<AttachmentPart> GetAllParts()
@@ -103,6 +136,33 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
         return null;
     }
 
+    public VehiculeManager LoadCar(string name)
+    {
+        AssetBundle bundle = AssetBundle.LoadFromFile(Application.persistentDataPath + Path.AltDirectorySeparatorChar + name.ToLower());
+        LoadedBundles[name] = bundle;
+
+        string[] assets = bundle.GetAllAssetNames();
+
+        GameObject obj = null;
+
+        if (assets.Length > 0)
+        {
+            obj = Instantiate(bundle.LoadAsset<GameObject>(assets[0]));
+        }
+
+
+        if (obj)
+        {
+            if (assets.Length > 1)
+                obj.GetComponent<VehiculeManager>().Thumbnail = Instantiate(bundle.LoadAsset<Sprite>(assets[1]));
+
+            return obj.GetComponent<VehiculeManager>();
+        }
+
+
+        return null;
+    }
+
     public void Initialize()
     {
         if (string.IsNullOrEmpty(RemotePath))
@@ -118,7 +178,7 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
             Manifest = JsonUtility.FromJson<BundleManifest>(File.ReadAllText(GetManifestFilePath()));
         }
 
-        StartCoroutine(DownloadFile(MANIFEST_FILENAME, DownloadAttachments));
+        StartCoroutine(DownloadFile(ATTACHMENTS_MANIFEST_FILENAME, DownloadAttachments));
     }
 
     public void DownloadAttachments()
@@ -163,9 +223,14 @@ public class AssetBundleManager : SceneSingleton<AssetBundleManager>
             OnDownloadComplete();
     }
 
+    string GetCarsManifestFilePath()
+    {
+        return Application.persistentDataPath + Path.AltDirectorySeparatorChar + CARS_MANIFEST_FILENAME;
+    }
+
     string GetManifestFilePath()
     {
-        return Application.persistentDataPath + Path.AltDirectorySeparatorChar + MANIFEST_FILENAME;
+        return Application.persistentDataPath + Path.AltDirectorySeparatorChar + ATTACHMENTS_MANIFEST_FILENAME;
     }
 
     IEnumerator DownloadFile(string name, Action callback = null)

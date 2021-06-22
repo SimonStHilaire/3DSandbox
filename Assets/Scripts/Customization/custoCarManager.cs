@@ -34,6 +34,8 @@ public class custoCarManager : SceneSingleton<custoCarManager>
         Debug.Log("OnDownloadComplete");
         parts = AssetBundleManager.Instance.GetAllParts();
         parts.ForEach(part => part.gameObject.SetActive(false));
+        //cars = AssetBundleManager.Instance.GetAllVehicules();
+        //cars.ForEach(car => car.gameObject.SetActive(false));
     }
 
     public void btnClick(Guid id)
