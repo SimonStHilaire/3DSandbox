@@ -7,26 +7,41 @@ using System.IO;
 public class GenerateAssetBundles
 {
     static string ATTACHMENT_ROOT_PATH = "Assets/Prefab/customization/attachments/";
+    static string VEHICULES_ROOT_PATH = "Assets/Prefab/customization/cars/";
+    static string ATTACHMENTS_MANIFEST_FILENAME = "manifest.json";
+    static string CARS_MANIFEST_FILENAME = "carsmanifest.json";
     static string BUNDLES_PATH = "AssetBundles/";
 
 
-    [MenuItem("Assets/Generate Asset bundles - Windows")]
-    static public void GenerateWindows()
+    [MenuItem("Assets/Generate Attachments Asset bundles - Windows")]
+    static public void GenerateAttachmentsWindows()
     {
-        GenerateBundles(BuildTarget.StandaloneWindows64, "win");
+        GenerateBundles(BuildTarget.StandaloneWindows64, ATTACHMENT_ROOT_PATH, ATTACHMENTS_MANIFEST_FILENAME, "win");
     }
 
-    [MenuItem("Assets/Generate Asset bundles - OSX")]
-    static public void GenerateOSX()
+    [MenuItem("Assets/Generate Cars Asset bundles - Windows")]
+    static public void GenerateCarsWindows()
     {
-        GenerateBundles(BuildTarget.StandaloneOSX, "mac");
+        GenerateBundles(BuildTarget.StandaloneWindows64, VEHICULES_ROOT_PATH, CARS_MANIFEST_FILENAME, "win");
     }
 
-    static void GenerateBundles(BuildTarget buildTarget, string prefix)
+    [MenuItem("Assets/Generate Attachments Asset bundles - OSX")]
+    static public void GenerateAttachmentsOSX()
+    {
+        GenerateBundles(BuildTarget.StandaloneOSX, ATTACHMENT_ROOT_PATH, ATTACHMENTS_MANIFEST_FILENAME, "mac");
+    }
+
+    [MenuItem("Assets/Generate Cars Asset bundles - OSX")]
+    static public void GenerateCarsOSX()
+    {
+        GenerateBundles(BuildTarget.StandaloneWindows64, VEHICULES_ROOT_PATH, CARS_MANIFEST_FILENAME, "mac");
+    }
+
+    static void GenerateBundles(BuildTarget buildTarget, string sourceFolder, string manifestFilename, string prefix)
     {
         List<string> bundleNames = new List<string>();
 
-        string[] directories = Directory.GetDirectories(ATTACHMENT_ROOT_PATH);
+        string[] directories = Directory.GetDirectories(sourceFolder);
 
         foreach (string dir in directories)
         {
@@ -39,7 +54,7 @@ public class GenerateAssetBundles
             }
         }
 
-        string[] files = Directory.GetFiles(ATTACHMENT_ROOT_PATH);
+        string[] files = Directory.GetFiles(sourceFolder);
 
         foreach (string filePath in files)
         {
@@ -61,7 +76,7 @@ public class GenerateAssetBundles
             manifest.bundles.Add(bundle);
         }
 
-        File.WriteAllText(BUNDLES_PATH + "manifest.json", JsonUtility.ToJson(manifest));
+        File.WriteAllText(BUNDLES_PATH + manifestFilename, JsonUtility.ToJson(manifest));
     }
 
     static string GenerateBundleWin(BuildTarget target, string suffix, string filePath)
