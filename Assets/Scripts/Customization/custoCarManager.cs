@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,11 +6,12 @@ using UnityEngine;
 public class custoCarManager : SceneSingleton<custoCarManager>
 {
 
-    public List<VehiculeManager> cars;
+    private List<VehiculeManager> cars;
     private List<UiItemDTO> partsTypes;
+    public GameObject car_body_root;
     List<UiItemDTO> uiParts;
 
-    public List<AttachmentPart> parts;
+    private List<AttachmentPart> parts;
 
     public UiItemsController uiItemsController;
 
@@ -26,7 +26,6 @@ public class custoCarManager : SceneSingleton<custoCarManager>
 
         CustomizeBtn = new UiItemDTO { displayName = "Customize", id = Guid.NewGuid() };
         BackBtn = new UiItemDTO { displayName = "Back", id = Guid.NewGuid() };
-        displayCarList();
     }
 
     void OnDownloadComplete()
@@ -34,8 +33,12 @@ public class custoCarManager : SceneSingleton<custoCarManager>
         Debug.Log("OnDownloadComplete");
         parts = AssetBundleManager.Instance.GetAllParts();
         parts.ForEach(part => part.gameObject.SetActive(false));
-        //cars = AssetBundleManager.Instance.GetAllVehicules();
-        //cars.ForEach(car => car.gameObject.SetActive(false));
+        cars = AssetBundleManager.Instance.GetAllVehicules();
+        cars.ForEach(car => {
+            car.gameObject.SetActive(false);
+            car.gameObject.transform.SetParent(car_body_root.transform, false);
+        });
+        displayCarList();
     }
 
     public void btnClick(Guid id)
@@ -129,7 +132,7 @@ public class custoCarManager : SceneSingleton<custoCarManager>
         foreach (VehiculeManager v in cars)
         {
             v.Id = Guid.NewGuid();
-            carsBtns.Add(new UiItemDTO { displayName = v.car_name, id = v.Id });
+            carsBtns.Add(new UiItemDTO { displayName = v.car_name, id = v.Id, thumbnail=v.Thumbnail });
         }
 
         carsBtns.Add(CustomizeBtn);
