@@ -34,7 +34,7 @@ public class GenerateAssetBundles
     [MenuItem("Assets/Generate Cars Asset bundles - OSX")]
     static public void GenerateCarsOSX()
     {
-        GenerateBundles(BuildTarget.StandaloneWindows64, VEHICULES_ROOT_PATH, CARS_MANIFEST_FILENAME, "mac");
+        GenerateBundles(BuildTarget.StandaloneOSX, VEHICULES_ROOT_PATH, CARS_MANIFEST_FILENAME, "mac");
     }
 
     static void GenerateBundles(BuildTarget buildTarget, string sourceFolder, string manifestFilename, string prefix)
